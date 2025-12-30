@@ -1,16 +1,38 @@
-# Titanic Survival Prediction AI
+# Titanic Survival Prediction using AI
 
-This is a machine learning project that predicts Titanic passenger survival using a Random Forest model.
+## 📌 Overview
+This project predicts whether a passenger survived the Titanic disaster using Machine Learning algorithms.
 
-## Setup
-1. Download `train.csv` from Kaggle (https://www.kaggle.com/c/titanic/data).
-2. Upload `train.csv`, `titanic_survival.py`, and `requirements.txt` to this repo.
-3. Deploy on Streamlit Cloud (share.streamlit.io) or Hugging Face Spaces.
+## 🧠 Algorithms Used
+- Logistic Regression
+- Decision Tree
+- Random Forest (Best Performing)
 
-## Run Locally
-- Install dependencies: `pip install -r requirements.txt`
-- Run: `streamlit run titanic_survival.py`
+## 🛠 Technologies
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
 
-## Features
-- Input passenger details for prediction.
-- Shows model accuracy and feature importance.
+## 📁 Dataset
+Titanic Dataset from Kaggle
+
+## 🚀 How to Run
+1. Clone the repository
+2. Install dependencies:
+   pip install -r requirements.txt
+3. Run the project:
+   python app.py
+
+## 🎯 Accuracy
+Random Forest achieves approximately **85% accuracy**
+
+## 🔮 Future Enhancements
+- Streamlit Web App
+- Hyperparameter Tuning
+- Deep Learning Models
+
+## 👩‍💻 Author
+Srinjini Saha
