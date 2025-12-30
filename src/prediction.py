@@ -1,7 +1,10 @@
 import numpy as np
 
 def predict_survival(model, passenger_data):
-    passenger = np.array([passenger_data])
-    prediction = model.predict(passenger)
+    passenger_array = np.array([passenger_data])
+    prediction = model.predict(passenger_array)
 
-    return "Survived" if prediction[0] == 1 else "Did Not Survive"
+    if prediction[0] == 1:
+        return "Survived"
+    else:
+        return "Did Not Survive"
