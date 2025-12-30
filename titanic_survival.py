@@ -7,19 +7,12 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load data (using a sample; replace with real Kaggle data for better results)
-# For demo, we'll use a small synthetic dataset. In real use, load from CSV.
-data = {
-    'Pclass': [3, 1, 3, 1, 3, 3, 2, 3, 3, 2],
-    'Sex': ['male', 'female', 'female', 'female', 'male', 'male', 'female', 'male', 'female', 'male'],
-    'Age': [22, 38, 26, 35, 35, np.nan, 27, 19, 28, 31],
-    'SibSp': [1, 1, 0, 1, 0, 0, 0, 3, 1, 1],
-    'Parch': [0, 0, 0, 0, 0, 0, 2, 2, 0, 0],
-    'Fare': [7.25, 71.28, 7.92, 53.1, 8.05, 8.46, 11.13, 21.08, 7.85, 18.0],
-    'Embarked': ['S', 'C', 'S', 'S', 'S', 'Q', 'S', 'S', 'C', 'S'],
-    'Survived': [0, 1, 1, 1, 0, 0, 1, 0, 1, 0]
-}
-df = pd.DataFrame(data)
+# Load data from uploaded CSV (download train.csv from Kaggle and upload to repo)
+try:
+    df = pd.read_csv('train.csv')
+except FileNotFoundError:
+    st.error("train.csv not found. Please upload it to the repository.")
+    st.stop()
 
 # Preprocessing
 df['Age'].fillna(df['Age'].median(), inplace=True)
@@ -41,11 +34,11 @@ model.fit(X_train, y_train)
 # Evaluate
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print(f"Model Accuracy: {accuracy:.2f}")
 
 # Streamlit App
 st.title("Titanic Survival Prediction AI")
 st.write("Enter passenger details to predict survival.")
+st.write(f"Model Accuracy on Test Data: {accuracy:.2f}")
 
 # User inputs
 pclass = st.selectbox("Passenger Class", [1, 2, 3])
@@ -68,9 +61,10 @@ prob = model.predict_proba(input_data)[0][1]
 st.write(f"Prediction: {'Survived' if prediction == 1 else 'Did not survive'}")
 st.write(f"Survival Probability: {prob:.2f}")
 
-# Visualization (optional)
+# Visualization
 st.subheader("Feature Importance")
 importances = model.feature_importances_
 features = X.columns
-plt.barh(features, importances)
-st.pyplot(plt)
+fig, ax = plt.subplots()
+ax.barh(features, importances)
+st.pyplot(fig)
